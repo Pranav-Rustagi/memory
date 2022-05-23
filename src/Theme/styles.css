@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
+
+.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 500ms;
+}
+
+@keyframes fadeIn {
+    from {
+        visibility: hidden;
+        transform: scale(0.75);
+        opacity: 0;
+    }
+    to {
+        visibility: visible;
+        transform: none;
+        opacity: 1;
+    }
+}
