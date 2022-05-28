@@ -37,7 +37,7 @@ const GameStateForm = ({history}) => {
                     <Button
                         bg={"tangerine.dark"}
                         color="white.snow"
-                        borderRadius={25}
+                        rounded="full"
                         fontSize="1.35rem"
                         _hover={{ bg: "tangerine.darker" }}
                         _focus={{ outline: "none", boxShadow: "none" }}

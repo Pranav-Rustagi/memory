@@ -11,7 +11,7 @@ const RadioCard = (props) => {
             <Box
                 {...checkboxProps}
                 cursor="pointer"
-                borderRadius={20}
+                rounded="full"
                 fontWeight="semibold"
                 fontSize="1.1rem"
                 textAlign="center"

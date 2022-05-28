@@ -22,11 +22,13 @@ const Home = () => {
                     <Box w="full" textAlign="center">
                         <Link to="/game/new">
                             <Button
+                                fontSize={"1.5rem"}
+                                rounded="3xl"
                                 bg={"tangerine.dark"}
                                 color={snow}
-                                _hover={{ bg: "tangerine.darker", transform: "scale(1.025)" }}
+                                _hover={{ bg: "tangerine.faded" }}
                                 _focus={{ outline: "none", boxShadow: "none" }}
-                                _active={{ bg: "tangerine.light" }}
+                                _active={{ bg: "tangerine.light", transform: "scale(0.95)" }}
                                 size="lg"
                                 w={"60%"}
                             >
