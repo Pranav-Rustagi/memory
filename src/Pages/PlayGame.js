@@ -16,7 +16,7 @@ const getInitState = (player_count) => {
         stateObj.solo_moves = 0;
     }
     else {
-        stateObj.turn = 0;
+        stateObj.turn = 1;
         while(player_count)
             stateObj[`p${player_count--}_matches`] = [];
     }

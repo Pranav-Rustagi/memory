@@ -5,6 +5,38 @@
     animation-duration: 5000ms;
 }
 
+.active {
+    position: relative;
+}
+
+.active::before, .active::after {
+    display: block;
+    position: absolute;
+}
+
+.active::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: var(--chakra-colors-tangerine-light);
+    transform: rotate(45deg)  translateX(-14px);
+    top: 0;
+    left: 50%;
+}
+
+.active::after {
+    text-transform: uppercase;
+    font-size: 10px;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(calc(100% + 10px));
+    font-weight: var(--chakra-fontWeights-bold);
+    letter-spacing: 3px;
+}
+
 @keyframes fadeIn {
     from {
         visibility: hidden;
