@@ -1,7 +1,7 @@
 import { Button, HStack, Spacer } from "@chakra-ui/react"
 import Logo from "./Logo"
 
-const GameScreenHeader = ({history}) => {
+const GameScreenHeader = ({history, resetBoard}) => {
     return (
         <HStack w={["80vw", "80vw", "700px", "850px"]}>
             <Logo fill="#000" h="24" />
@@ -15,6 +15,7 @@ const GameScreenHeader = ({history}) => {
                     _focus={{ outline: "none", boxShadow: "none" }}
                     _active={{ transform: "scale(0.95)" }}
                     px={6}
+                    onClick={resetBoard}
                 >
                     Restart
                 </Button>

@@ -1,4 +1,4 @@
-import {useEffect, useState } from "react";
+import {useEffect } from "react";
 import { Flex, HStack, Text } from "@chakra-ui/react"
 
 const SoloFooter = ({time, moves}) => {
@@ -45,10 +45,7 @@ const MultiPlayerFooter = ({turn, player_count}) => {
     );
 }
 
-const GameScreenFooter = ({gameState, setGameState}) => {
-
-    const [timeTaken, setTimeTaken] = useState(0);
-
+const GameScreenFooter = ({gameState, setGameState, timeTaken, setTimeTaken}) => {
     useEffect(() => {
         if(gameState.player_count !== 1) return;
 
@@ -63,7 +60,7 @@ const GameScreenFooter = ({gameState, setGameState}) => {
 
         return () => clearInterval(timeVar);
 
-    }, [gameState.gameOver, timeTaken, gameState.player_count]);
+    }, [gameState.gameOver, timeTaken, gameState.player_count, setTimeTaken]);
 
     if(gameState.player_count === 1)
         return <SoloFooter time={timeTaken} moves={gameState.solo_moves} />

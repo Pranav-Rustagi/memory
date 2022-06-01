@@ -6,7 +6,7 @@ const FormField = ({ property, labelText, optionList, setGameState }) => {
     const onChangeHandler = (val) => {
         setGameState(gameState => ({
             ...gameState,
-            [property]: val
+            [property]: val.toLowerCase()
         }));
     };
 
