@@ -5,16 +5,16 @@
     animation-duration: 5000ms;
 }
 
-.active {
+.activePlayer {
     position: relative;
 }
 
-.active::before, .active::after {
+.activePlayer::before, .activePlayer::after {
     display: block;
     position: absolute;
 }
 
-.active::before {
+.activePlayer::before {
     content: '';
     width: 20px;
     height: 20px;
@@ -24,7 +24,7 @@
     left: 50%;
 }
 
-.active::after {
+.activePlayer::after {
     text-transform: uppercase;
     font-size: 10px;
     width: 100%;
@@ -35,6 +35,11 @@
     transform: translateY(calc(100% + 10px));
     font-weight: var(--chakra-fontWeights-bold);
     letter-spacing: 3px;
+}
+
+.game-button:focus {
+    outline: none!important;
+    box-shadow: none!important;
 }
 
 @keyframes fadeIn {

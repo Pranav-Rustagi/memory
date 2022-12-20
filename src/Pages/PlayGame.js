@@ -9,17 +9,19 @@ import generateButtonValues from "../Helpers";
 const getInitState = (player_count) => {
     const stateObj = {
         gameOver: false,
-        player_count: player_count
+        player_count: player_count,
+        matched: [],
+        active: []
     };
 
     if(player_count === 1) {
-        stateObj.timeTaken = 0;
         stateObj.solo_moves = 0;
     }
     else {
         stateObj.turn = 1;
-        while(player_count)
-            stateObj[`p${player_count--}_matches`] = [];
+        for(let i = 1; i <= player_count; i++) {
+            stateObj[`player${i}`] = { matches: 0, moves: 0 };
+        }
     }
 
     return stateObj;
@@ -27,18 +29,14 @@ const getInitState = (player_count) => {
 
 const PlayGame = (props) => {
     const state = props.history?.location?.state;
-
-    console.log(state);
     
     const [gameState, setGameState] = useState(getInitState(+state.player_count));
     const [timeTaken, setTimeTaken] = useState(0);
-    const [activeCards, setActiveCards] = useState([]);
     const [randomVals, setRandomVals] = useState(generateButtonValues(state.theme, ((+state.grid_size[0]) ** 2) / 2));
 
     const resetBoard = () => {
         setGameState(getInitState(+state.player_count));
         setTimeTaken(0);
-        setActiveCards([]);
         setRandomVals(generateButtonValues(state.theme, ((+state.grid_size[0]) ** 2) / 2));
     }
     
@@ -51,9 +49,7 @@ const PlayGame = (props) => {
                     randomVals={randomVals}
                     state={state} 
                     gameState={gameState} 
-                    setGameState={setGameState} 
-                    activeCards={activeCards}
-                    setActiveCards={setActiveCards}
+                    setGameState={setGameState}
                 />
                 <Spacer />
                 <GameScreenFooter 

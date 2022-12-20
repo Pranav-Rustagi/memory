@@ -43,7 +43,6 @@ const getAllIcons = () => {
 }
 
 const shuffleArray = (array) => {
-    array = [...array, ...array];
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
@@ -62,7 +61,7 @@ const generateRandomNumbers = (size) => {
         if(!numbers.includes(randomNumber))
             numbers.push(randomNumber);
     }
-    return shuffleArray(numbers);
+    return shuffleArray([...numbers, ...numbers]);
 }
 
 
@@ -75,15 +74,15 @@ const generateRandomIcons = (size) => {
         if(!icons.includes(allAvailableIcons[randomIconIndex]))
             icons.push(allAvailableIcons[randomIconIndex]);
     }
-    return shuffleArray(icons);
+    return shuffleArray([...icons, ...icons]);
 }
 
 
 const generateButtonValues = (theme, size) => {
     if(theme === 'numbers')
-        return generateRandomNumbers(size);
+        return shuffleArray(generateRandomNumbers(size));
     else
-        return generateRandomIcons(size);
+        return shuffleArray(generateRandomIcons(size));
 }
 
 export default generateButtonValues;
