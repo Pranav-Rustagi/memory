@@ -21,11 +21,11 @@ const SoloFooter = ({time, moves}) => {
 
 
 
-const MultiPlayerFooter = ({turn, player_count, gameState}) => {
+const MultiPlayerFooter = ({ gameState }) => {
     return (
         <HStack w={["80vw", "80vw", "700px", "850px"]} justify="center" spacing={[2, 4, 4, 7]} pb={10}>
             {
-                Array(gameState.player_count).fill(0).map((_, i) => {
+                [...Array(gameState.player_count).keys()].map((i) => {
                     const bg = gameState.turn === i + 1 ? "tangerine.light" : "blue.pattens";
                     const lblColor = gameState.turn === i + 1 ? "white.snow" : "gray.bermuda";
                     const scoreColor = gameState.turn === i + 1 ? "white.snow" : "arapawa";
@@ -45,7 +45,7 @@ const MultiPlayerFooter = ({turn, player_count, gameState}) => {
     );
 }
 
-const GameScreenFooter = ({gameState, setGameState, timeTaken, setTimeTaken}) => {
+const GameScreenFooter = ({gameState, timeTaken, setTimeTaken}) => {
     useEffect(() => {
         if(gameState.player_count !== 1) return;
 

@@ -29,9 +29,32 @@ const GameBoard = ({ state, gameState, setGameState, randomVals }) => {
 
     const move = useCallback((index) => {
         if (gameState.player_count === 1) {
+            setGameState((prevState) => {
+                const newState = { ...prevState };
+                newState.active.push(index);
+                if (newState.active.length === 2) {
+                    newState.solo_moves++;
+                    setTimeout(() => {
+                        const first = JSON.stringify(randomVals[newState.active[0]]);
+                        const second = JSON.stringify(randomVals[newState.active[1]]);
+                        setGameState((prevState) => {
+                            const newState = { ...prevState };
+                            if (first === second) {
+                                newState.matched.push(newState.active[0], newState.active[1]);
+                            }
+                            newState.active = [];
+                            if(newState.matched.length === randomVals.length) {
+                                newState.gameOver = true;
+                            }
+                            return newState;
+                        });
+                    }, 1000);
+                }
+                return newState;
+            });
         } else {
             setGameState((prevState) => {
-                let stateObj = {...prevState};
+                const stateObj = {...prevState};
                 stateObj.active.push(index);
 
                 if(stateObj.active.length === 2) {
@@ -43,11 +66,14 @@ const GameBoard = ({ state, gameState, setGameState, randomVals }) => {
                             let stateObj = {...prevState};
                             if (first === second) {
                                 stateObj[`player${stateObj.turn}`].matches++;
-                                stateObj.matched.push(stateObj.active[0]);
-                                stateObj.matched.push(stateObj.active[1]);
+                                stateObj.high_score = Math.max(stateObj.high_score, stateObj[`player${stateObj.turn}`].matches);
+                                stateObj.matched.push(stateObj.active[0], stateObj.active[1]);
                             }
                             stateObj.turn = stateObj.turn === stateObj.player_count ? 1 : stateObj.turn + 1;
                             stateObj.active = [];
+                            if(stateObj.matched.length === randomVals.length) {
+                                stateObj.gameOver = true;
+                            }
                             return stateObj;
                         })
                     }, 1000);
